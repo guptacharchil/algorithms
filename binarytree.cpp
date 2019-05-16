@@ -6,6 +6,26 @@ struct node
   node* left;
   node* right;
 };
+void min(node *root)
+{
+  while(root->left!=NULL)
+  {
+    root=root->left;
+  }
+  cout<<"MIN element in the list"<<endl;
+  cout<<root->data<<endl;
+}
+void max(node *root)
+{
+
+  while(root->right!=NULL)
+  {
+    root=root->right;
+  }
+  cout<<"MAx element in the list"<<endl;
+  cout<<root->data<<endl;
+
+}
 void search(node* root,int data)
 {
   if(root==NULL)
@@ -63,6 +83,8 @@ int main()
   root=insert(root,80);
   root=insert(root,150);
 
-
+min(root);
+max(root);
+cout<<"element 80 is in list"<<endl;
   search(root,80);
 }
