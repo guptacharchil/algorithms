@@ -61,7 +61,7 @@ node* insert(node* root,int data)
   if(root==NULL)
   {
     root=getnode(data);
-
+return root;
   }
   else if(data<=root->data)
   {
@@ -71,7 +71,7 @@ node* insert(node* root,int data)
     {
     root->right=insert(root->right,data);
   }
-    return root;
+
 }
 int main()
 {
