@@ -63,7 +63,7 @@ int main()
   root=insert(root,100);
   root=insert(root,60);
   root=insert(root,50);
-  root=insert(root,40);
+  root=insert(root,NULL);
   root=insert(root,30);
-inorder(root);
+preorder(root);
 }
