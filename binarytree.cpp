@@ -6,6 +6,12 @@ struct node
   node* left;
   node* right;
 };
+node* findmin(node* root)
+{
+  while(root->left!=NULL)
+  root=root->left;
+  return root;
+}
 void min(node *root)
 {
   while(root->left!=NULL)
@@ -56,6 +62,43 @@ node* getnode(int data)
   tem->right=NULL;
   return tem;
 }
+node* Delete(node* root, int data)
+{
+  if(root==NULL)
+  return root;
+  else if(data<root->data)
+  root->left=Delete(root->left,data);
+  else if(data>root->data)
+  root->right=Delete(root->right,data);
+  else
+  {
+    if(root->left==NULL&&root->right==NULL)
+    {
+      delete root;
+      root=NULL;
+    }
+    else if(root->right==NULL)
+    {
+      node* tem=root;
+      root=root->left;
+      delete tem;
+    }
+    else if(root->left==NULL)
+    {
+      node* tem=root;
+      root=root->right;
+      delete tem;
+    }
+    else
+    {
+      node* tem=findmin(root->right);
+      root->data=tem->data;
+      root->right=(Delete(root->right,data));
+
+    }
+
+  }
+}
 node* insert(node* root,int data)
 {
   if(root==NULL)
@@ -81,10 +124,16 @@ int main()
   root=insert(root,30);
   root=insert(root,0);
   root=insert(root,80);
-  root=insert(root,150);
+  insert(root,150);
+
+  insert(root,1100);
 
 min(root);
 max(root);
+Delete(root,1100);
+max(root);
+Delete(root,0);
+min(root);
 cout<<"element 80 is in list"<<endl;
   search(root,80);
 }
